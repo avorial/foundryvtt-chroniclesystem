@@ -7,6 +7,9 @@
             <div class="profile-img-container flex">
                 <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" alt="{{actor.name}} Picture" />
             </div>
+            {{#if owner}}
+                <button type="button" class="generate-crest">Generate Crest</button>
+            {{/if}}
             <header class="header-field motto">
                 <span>{{localize "CS.sheets.house.labels.motto"}}</span>
             </header>

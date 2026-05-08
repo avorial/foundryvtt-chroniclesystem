@@ -1,5 +1,10 @@
 #Change Log
 
+## 0.7.1
+
+### Added
+- Added a Generate Crest button to the House sheet that sets the house coat of arms from the Armoria heraldry API.
+
 ## 0.7.0
 
 ### Changed

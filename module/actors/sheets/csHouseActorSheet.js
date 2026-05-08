@@ -154,6 +154,7 @@ export class CSHouseActorSheet extends CSActorSheet {
         html.find('.regenerate-resources').click(
             this._regenerateResources.bind(this)
         );
+        html.find('.generate-crest').click(this._generateCrest.bind(this));
     }
 
     async _onclickMemberControl(event) {
@@ -171,6 +172,20 @@ export class CSHouseActorSheet extends CSActorSheet {
     async _regenerateResources(event) {
         event.preventDefault();
         await this.actor.regenerateAllStartingResources();
+    }
+
+    async _generateCrest(event) {
+        event.preventDefault();
+        const seed = this._buildCrestSeed();
+        const crestUrl = `https://armoria.herokuapp.com/svg/500/${encodeURIComponent(seed)}`;
+        await this.actor.update({img: crestUrl});
+        ui.notifications?.info(`Generated crest for ${this.actor.name}.`);
+    }
+
+    _buildCrestSeed() {
+        const houseName = this.actor.name || 'house';
+        const randomPart = foundry.utils.randomID();
+        return `${houseName}-${randomPart}`;
     }
 
     async _openResourceEditor(ev) {
