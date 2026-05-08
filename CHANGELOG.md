@@ -1,5 +1,10 @@
 #Change Log
 
+## 0.7.3
+
+### Changed
+- Added a version cache-buster to the package download URL so Foundry fetches the latest zip from GitHub.
+
 ## 0.7.2
 
 ### Fixed
