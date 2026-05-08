@@ -1,5 +1,10 @@
 #Change Log
 
+## 0.7.2
+
+### Fixed
+- Changed generated house crests to use an Armoria PNG URL with a `.png` extension so Foundry accepts it as an actor image.
+
 ## 0.7.1
 
 ### Added

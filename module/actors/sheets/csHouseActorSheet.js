@@ -177,7 +177,7 @@ export class CSHouseActorSheet extends CSActorSheet {
     async _generateCrest(event) {
         event.preventDefault();
         const seed = this._buildCrestSeed();
-        const crestUrl = `https://armoria.herokuapp.com/svg/500/${encodeURIComponent(seed)}`;
+        const crestUrl = `https://armoria.herokuapp.com/png/500/${encodeURIComponent(seed)}.png`;
         await this.actor.update({img: crestUrl});
         ui.notifications?.info(`Generated crest for ${this.actor.name}.`);
     }
