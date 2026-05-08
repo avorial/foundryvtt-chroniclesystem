@@ -2,6 +2,23 @@
 
 This is a fan-created implementation of **Green Ronin's Chronicle System** for **Foundry VTT**, this system is used in Swords Chronicle RPG and Song of Ice and Fire RPG. 
 
+## Foundry VTT 13 Update
+
+This fork has been updated for **Foundry VTT 13**.
+
+Manifest URL:
+`https://raw.githubusercontent.com/avorial/foundryvtt-chroniclesystem/master/system.json`
+
+Changes made for the v13 update:
+- Updated the system manifest for Foundry VTT 13 compatibility.
+- Added v13 document type declarations for actors and items.
+- Added v13 data model registration for Chronicle System actors and items.
+- Migrated system data paths from older `data.*` document fields to `system.*`.
+- Replaced older owned-item checks with parent document checks.
+- Added the existing poison item sheet/type to the system declarations.
+- Updated roll handling so ability, specialty, weapon, and formula rolls use Foundry VTT 13-compatible roll evaluation.
+- Rebuilt `chroniclesystem.zip` so Foundry can install the current fork from the manifest URL.
+
 It currently has one functional character sheet with the following characteristics:
 - Rollable test values
 - Armor's bulk and penalty values influencing the character

@@ -1,5 +1,18 @@
 #Change Log
 
+## 0.7.0
+
+### Changed
+- Updated the system manifest for Foundry VTT 13 compatibility.
+- Added Foundry VTT 13 document type declarations and data model registration.
+- Migrated actor and item update paths from `data.*` to `system.*`.
+- Replaced older owned-item checks with parent document checks.
+- Updated roll handling to use Foundry VTT 13-compatible roll evaluation.
+- Rebuilt `chroniclesystem.zip` for installation from the fork manifest.
+
+### Added
+- Added the existing poison item sheet/type to the declared system item types.
+
 ## 0.6.0
 
 ### Added
