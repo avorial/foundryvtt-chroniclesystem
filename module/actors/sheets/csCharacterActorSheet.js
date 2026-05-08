@@ -171,8 +171,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
     }
 
     this.actor.update({
-      "data.derivedStats.frustration.current" : value,
-      "data.penalties": this.actor.penalties
+      "system.derivedStats.frustration.current" : value,
+      "system.penalties": this.actor.penalties
     });
   }
 
@@ -188,8 +188,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
     }
 
     this.actor.update({
-      "data.derivedStats.fatigue.current" : value,
-      "data.modifiers": this.actor.modifiers
+      "system.derivedStats.fatigue.current" : value,
+      "system.modifiers": this.actor.modifiers
     });
   }
 
@@ -209,8 +209,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
     }
 
     this.actor.update({
-      "data.currentStress" : value,
-      "data.penalties": this.actor.penalties
+      "system.currentStress" : value,
+      "system.penalties": this.actor.penalties
     });
   }
 
@@ -231,8 +231,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
     this.actor.updateTempPenalties();
     this.actor.addPenalty(ChronicleSystem.modifiersConstants.ALL, ChronicleSystem.keyConstants.WOUNDS, wounds.length, false);
     this.actor.update({
-      "data.wounds" : wounds,
-      "data.penalties" : this.actor.penalties
+      "system.wounds" : wounds,
+      "system.penalties" : this.actor.penalties
     });
   }
 
@@ -254,8 +254,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
         this.actor.addPenalty(ChronicleSystem.modifiersConstants.ALL, ChronicleSystem.keyConstants.WOUNDS, wounds.length, false);
       }
       this.actor.update({
-        "data.wounds" : wounds,
-        "data.penalties" : this.actor.penalties
+        "system.wounds" : wounds,
+        "system.penalties" : this.actor.penalties
       });
     }
   }
@@ -274,8 +274,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
     this.actor.addModifier(ChronicleSystem.modifiersConstants.ALL, ChronicleSystem.keyConstants.INJURY, -injuries.length, false);
 
     this.actor.update({
-      "data.injuries" : injuries,
-      "data.modifiers" : this.actor.modifiers
+      "system.injuries" : injuries,
+      "system.modifiers" : this.actor.modifiers
     });
   }
 
@@ -298,8 +298,8 @@ export class CSCharacterActorSheet extends CSActorSheet {
       }
 
       this.actor.update({
-        "data.injuries" : injuries,
-        "data.modifiers" : this.actor.modifiers
+        "system.injuries" : injuries,
+        "system.modifiers" : this.actor.modifiers
       });
     }
   }
@@ -349,7 +349,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
     let tempCollection = this.actor.getEmbeddedCollection('Item').filter((item) => slots.includes(item.getCSData().equipped));
 
     tempCollection.forEach((item) => {
-      collection.push({_id: item._id, "data.equipped": ChronicleSystem.equippedConstants.IS_NOT_EQUIPPED});
+      collection.push({_id: item._id, "system.equipped": ChronicleSystem.equippedConstants.IS_NOT_EQUIPPED});
       item.onEquippedChanged(this.actor, false);
     });
 
@@ -359,7 +359,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
   ChangeItemEquippedStatus(collection = [], item, equippedStatus = ChronicleSystem.equippedConstants.IS_NOT_EQUIPPED) {
     item.getCSData().equipped = equippedStatus;
 
-    collection.push({_id: item._id, "data.equipped": item.getCSData().equipped});
+    collection.push({_id: item._id, "system.equipped": item.getCSData().equipped});
 
     item.onEquippedChanged(this.actor, equippedStatus > 0);
 
@@ -372,7 +372,7 @@ export class CSCharacterActorSheet extends CSActorSheet {
       LOGGER.warn("the informed disposition does not exist.");
       return;
     }
-    this.actor.update({"data.currentDisposition": event.target.dataset.id});
+    this.actor.update({"system.currentDisposition": event.target.dataset.id});
   }
 
   /* -------------------------------------------- */

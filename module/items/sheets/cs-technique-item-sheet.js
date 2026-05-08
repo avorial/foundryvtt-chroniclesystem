@@ -40,7 +40,7 @@ export class CSTechniqueItemSheet extends CSItemSheet {
         };
         let newSpec = Object.values(item.getCSData().arts);
         newSpec.push(art);
-        item.update({"data.arts" : newSpec});
+        item.update({"system.arts" : newSpec});
     }
 
     async _onclickArtControl(event) {
@@ -54,7 +54,7 @@ export class CSTechniqueItemSheet extends CSItemSheet {
             const item = this.item;
             let newSpec = Object.values(item.getCSData().arts);
             newSpec.splice(index,1);
-            item.update({"data.arts" : newSpec});
+            item.update({"system.arts" : newSpec});
         }
     }
 
@@ -75,7 +75,7 @@ export class CSTechniqueItemSheet extends CSItemSheet {
         };
         let newSpec = Object.values(item.getCSData().works);
         newSpec.push(work);
-        item.update({"data.works" : newSpec});
+        item.update({"system.works" : newSpec});
     }
 
     async _onclickWorkControl(event) {
@@ -89,7 +89,7 @@ export class CSTechniqueItemSheet extends CSItemSheet {
             const item = this.item;
             let newSpec = Object.values(item.getCSData().works);
             newSpec.splice(index,1);
-            item.update({"data.works" : newSpec});
+            item.update({"system.works" : newSpec});
         }
     }
 }

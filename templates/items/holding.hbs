@@ -42,7 +42,7 @@
         </section>
         <section class="description">
             {{> "systems/chroniclesystem/templates/items/partials/description.hbs"}}
-            {{#if item.isOwned}}
+            {{#if item.parent}}
                 <header class="header-field flexrow">
                     <div class="header-title">
                         <span>{{localize "CS.sheets.holdingItem.features"}}</span>

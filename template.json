@@ -159,7 +159,7 @@
     }
   },
   "Item": {
-    "types": ["armor", "weapon", "ability", "equipment", "benefit", "drawback", "event", "holding", "technique"],
+    "types": ["armor", "weapon", "ability", "equipment", "benefit", "drawback", "event", "holding", "technique", "poison"],
     "templates": {
       "physicalItem": {
         "weight": 0

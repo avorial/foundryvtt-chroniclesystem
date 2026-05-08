@@ -22,6 +22,7 @@ import {CSTechniqueItemSheet} from "../items/sheets/cs-technique-item-sheet.js";
 import {migrateData} from "../migrations/migration.js";
 import {CsCombat} from "../combat/cs-combat.js";
 import {CsCombatant} from "../combat/cs-combatant.js";
+import {registerDataModels} from "./dataModels.js";
 
 /* -------------------------------------------- */
 /*  Foundry VTT Initialization                  */
@@ -40,6 +41,7 @@ Hooks.once("init", async function() {
     };
 
     registerCustomHelpers();
+    registerDataModels();
 
 	// Define custom Entity classes
     CONFIG.Actor.documentClass = actorConstructor;
@@ -56,7 +58,7 @@ Hooks.once("init", async function() {
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("chroniclesystem", CSItemSheet,
-        { label: SystemUtils.localize("CS.sheets.itemSheet"), types: ["armor", "weapon", "equipment", "benefit", "drawback"], makeDefault: true });
+        { label: SystemUtils.localize("CS.sheets.itemSheet"), types: ["armor", "weapon", "equipment", "benefit", "drawback", "poison"], makeDefault: true });
     Items.registerSheet("chroniclesystem", CSAbilityItemSheet,
         { label: SystemUtils.localize("CS.sheets.abilityItemSheet"), types: ["ability"], makeDefault: true });
     Items.registerSheet("chroniclesystem", CSEventItemSheet,
@@ -74,14 +76,14 @@ Hooks.once("ready", async () => {
     await migrateData();
 });
 
-Hooks.on('createItem', (item, data) => {
-    if (!item.isOwned) {
-        item.img = `systems/chroniclesystem/assets/icons/${item.type}.png`;
+Hooks.on('createItem', async (item) => {
+    if (!item.parent) {
+        await item.update({img: `systems/chroniclesystem/assets/icons/${item.type}.png`});
     }
 });
 
 // Hooks.on('createActor', async (actor, options, userId) => {
-//     if (actor.data.type === 'character' && options.renderSheet) {
+//     if (actor.type === 'character' && options.renderSheet) {
 //         const abilitiesToFind = [
 //             'Athletics',
 //             'Common Knowledge',
@@ -93,6 +95,6 @@ Hooks.on('createItem', (item, data) => {
 //         const abilityIndex = (await game.packs
 //             .get('chroniclesystem.abilities')
 //             .getContent());
-//         actor.createEmbeddedEntity('OwnedItem', abilityIndex.filter((i) => abilitiesToFind.includes(i.data.name)));
+//         actor.createEmbeddedDocuments('Item', abilityIndex.filter((i) => abilitiesToFind.includes(i.name)));
 //     }
 // });

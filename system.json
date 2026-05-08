@@ -1,7 +1,8 @@
 {
   "title": "Chronicle System (Unofficial)",
   "description": "An implementation for Green Ronin's Chronicle System, used by SIFRP and Sword Chronicles.",
-  "version": "0.6.0",
+  "version": "0.7.0",
+  "type": "system",
   "esmodules": [
     "module/system/config.js"
   ],
@@ -18,13 +19,80 @@
       "flags": {}
     }
   ],
-  "gridDistance": 5,
-  "gridUnits": "ft",
-  "primaryTokenAttribute": "health",
-  "secondaryTokenAttribute": "power",
-  "url": "https://github.com/3darkman/foundryvtt-chroniclesystem/",
-  "manifest": "https://raw.githubusercontent.com/3darkman/foundryvtt-chroniclesystem/master/system.json",
-  "download": "https://raw.githubusercontent.com/3darkman/foundryvtt-chroniclesystem/master/chroniclesystem.zip",
+  "documentTypes": {
+    "Actor": {
+      "character": {
+        "htmlFields": [
+          "personalHistory"
+        ]
+      },
+      "house": {}
+    },
+    "Item": {
+      "armor": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "weapon": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "ability": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "equipment": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "benefit": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "drawback": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "event": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "holding": {
+        "htmlFields": [
+          "description"
+        ]
+      },
+      "technique": {
+        "htmlFields": [
+          "description",
+          "works.description"
+        ]
+      },
+      "poison": {
+        "htmlFields": [
+          "description",
+          "effects",
+          "recovery"
+        ]
+      }
+    }
+  },
+  "grid": {
+    "distance": 5,
+    "units": "ft"
+  },
+  "primaryTokenAttribute": null,
+  "secondaryTokenAttribute": null,
+  "url": "https://github.com/avorial/foundryvtt-chroniclesystem/",
+  "manifest": "https://raw.githubusercontent.com/avorial/foundryvtt-chroniclesystem/master/system.json",
+  "download": "https://raw.githubusercontent.com/avorial/foundryvtt-chroniclesystem/master/chroniclesystem.zip",
   "license": "ISC",
   "id": "chroniclesystem",
   "authors": [
@@ -35,7 +103,7 @@
     }
   ],
   "compatibility": {
-    "minimum": "11",
-    "verified": "11.315"
+    "minimum": "13",
+    "verified": "13.350"
   }
 }

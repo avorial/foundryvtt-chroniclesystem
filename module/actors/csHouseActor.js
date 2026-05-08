@@ -168,7 +168,7 @@ export class CSHouseActor extends CSActor {
                 if (
                     this.getCSData().members[this.roleMap[role]].id === actorId
                 ) {
-                    let key = `data.members.${[this.roleMap[role]]}`;
+                    let key = `system.members.${[this.roleMap[role]]}`;
                     this.update({ [key]: '' });
                     founded = true;
                 }
@@ -182,7 +182,7 @@ export class CSHouseActor extends CSActor {
                     index = this._getMemberIndexIfExists(role, actorId, list);
                 if (index >= 0) {
                     list.splice(index);
-                    let key = `data.members.${[this.roleMap[role]]}`;
+                    let key = `system.members.${[this.roleMap[role]]}`;
                     this.update({
                         [key]: list,
                     });
@@ -199,7 +199,7 @@ export class CSHouseActor extends CSActor {
         data[resourceId].startingValue = parseInt(startingValue);
         data[resourceId].description = description;
         data[resourceId].total = this._updateResourceTotal(data, resourceId);
-        let key = `data.${resourceId}`;
+        let key = `system.${resourceId}`;
         this.update({ [key]: data[resourceId] });
     }
 
@@ -220,7 +220,7 @@ export class CSHouseActor extends CSActor {
                     );
                 }
             case 'STEWARD':
-                let key = `data.members.${[this.roleMap[role]]}`;
+                let key = `system.members.${[this.roleMap[role]]}`;
                 this.update({
                     [key]: { id: actorId, description: description },
                 });
@@ -232,7 +232,7 @@ export class CSHouseActor extends CSActor {
                 let list = this.getCSData().members[this.roleMap[role]];
                 if (this._getMemberIndexIfExists(role, actorId, list) < 0) {
                     list.push({ id: actorId, description: description });
-                    let key = `data.members.${[this.roleMap[role]]}`;
+                    let key = `system.members.${[this.roleMap[role]]}`;
                     this.update({
                         [key]: list,
                     });
@@ -306,13 +306,13 @@ export class CSHouseActor extends CSActor {
         this._updateResourceTotal(data, 'wealth');
 
         this.update({
-            'data.defense': data.defense,
-            'data.influence': data.influence,
-            'data.lands': data.lands,
-            'data.law': data.law,
-            'data.population': data.population,
-            'data.power': data.power,
-            'data.wealth': data.wealth,
+            'system.defense': data.defense,
+            'system.influence': data.influence,
+            'system.lands': data.lands,
+            'system.law': data.law,
+            'system.population': data.population,
+            'system.power': data.power,
+            'system.wealth': data.wealth,
         });
     }
 

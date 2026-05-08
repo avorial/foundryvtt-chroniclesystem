@@ -33,7 +33,7 @@ export class CSHoldingItemSheet extends CSItemSheet {
         };
         let featureList = Object.values(item.getCSData().features);
         featureList.push(feature);
-        item.update({"data.features" : featureList});
+        item.update({"system.features" : featureList});
     }
 
     async _onclickFeatureControl(event) {
@@ -47,7 +47,7 @@ export class CSHoldingItemSheet extends CSItemSheet {
             const item = this.item;
             let featureList = Object.values(item.getCSData().features);
             featureList.splice(index,1);
-            item.update({"data.features" : featureList});
+            item.update({"system.features" : featureList});
         }
     }
 }

@@ -7,7 +7,7 @@
             <input name="name" type="text" value="{{item.name}}" placeholder="Name"
                    data-dtype="String" />
         </h1>
-        {{#if item.isOwned}}
+        {{#if item.parent}}
         <a class="item-control item-delete" title="Delete"><i
                 class="fas fa-trash fa-2x"></i></a>
         {{/if}}

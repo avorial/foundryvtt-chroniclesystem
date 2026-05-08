@@ -178,7 +178,7 @@ export class CSCharacterActor extends CSActor {
         }
 
         if (save) {
-            this.update({"data.modifiers": this.modifiers});
+            this.update({"system.modifiers": this.modifiers});
         }
     }
 
@@ -206,7 +206,7 @@ export class CSCharacterActor extends CSActor {
         }
 
         if (save) {
-            this.update({"data.penalties": this.penalties});
+            this.update({"system.penalties": this.penalties});
         }
     }
 
@@ -220,7 +220,7 @@ export class CSCharacterActor extends CSActor {
             this.modifiers[type].splice(index, 1);
         }
         if (save)
-            this.update({"data.modifiers" : this.modifiers});
+            this.update({"system.modifiers" : this.modifiers});
     }
 
     removePenalty(type, documentId, save = false) {
@@ -233,7 +233,7 @@ export class CSCharacterActor extends CSActor {
             this.penalties[type].splice(index, 1);
         }
         if (save)
-            this.update({"data.penalties" : this.penalties});
+            this.update({"system.penalties" : this.penalties});
     }
 
     getMaxInjuries() {
@@ -246,12 +246,12 @@ export class CSCharacterActor extends CSActor {
 
     saveModifiers() {
         console.assert(this.modifiers, "call actor.updateTempModifiers before saving the modifiers!");
-        this.update({"data.modifiers" : this.modifiers}, {diff:false});
+        this.update({"system.modifiers" : this.modifiers}, {diff:false});
     }
 
     savePenalties() {
         console.assert(this.penalties, "call actor.updateTempPenalties before saving the penalties!");
-        this.update({"data.penalties" : this.penalties}, {diff:false});
+        this.update({"system.penalties" : this.penalties}, {diff:false});
     }
 
     getAbilityValue(abilityName) {

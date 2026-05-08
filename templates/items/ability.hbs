@@ -2,7 +2,7 @@
     {{!-- Item Sheet Header --}} {{>
     "systems/chroniclesystem/templates/items/partials/header-delete.hbs"}}
     <main class="sheet-body flexrow">
-        {{#if item.isOwned}}
+        {{#if item.parent}}
         <section class="item-stats">
             <header class="header-field">
                 <span>{{localize "CS.sheets.generalLabels.details"}}</span>
@@ -60,7 +60,7 @@
                                 data-dtype="String"
                         />
                         <!--suppress HtmlFormInputWithoutLabel -->
-                        {{#if ../item.isOwned}}
+                        {{#if ../item.parent}}
                         <input
                                 class="small-field"
                                 type="text"

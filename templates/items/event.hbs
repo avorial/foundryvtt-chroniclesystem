@@ -7,7 +7,7 @@
                 <span>{{localize "CS.sheets.generalLabels.details"}}</span>
             </header>
 
-            {{#if item.isOwned}}
+            {{#if item.parent}}
                 {{> (formGroup)
                         id="system.modifiers.defense"
                         labelText="CS.sheets.house.resources.defense"
@@ -25,7 +25,7 @@
                         dataType="Number"
                 }}
                 {{> (formGroup)
-                        id="data.modifiers.lands"
+                        id="system.modifiers.lands"
                         labelText="CS.sheets.house.resources.lands"
                         placeHolder="modifier"
                         inputCssClass="small-field"

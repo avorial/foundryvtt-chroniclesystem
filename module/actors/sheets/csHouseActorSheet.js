@@ -284,18 +284,15 @@ export class CSHouseActorSheet extends CSActorSheet {
         }
 
         if (itemsToCreate.length > 0) {
-            this.actor
-                .createEmbeddedDocuments('Item', itemsToCreate)
-                .then(function (result) {
-                    result.forEach((item) => {
-                        let event = eventsCanGenerateModifiers.find(
-                            (ev) => ev.doc === item.name
-                        );
-                        if (event) item.generateModifiers(event.choices);
-                        item.onObtained(item.actor);
-                    });
-                    embeddedItem.concat(result);
-                });
+            const result = await this.actor.createEmbeddedDocuments('Item', itemsToCreate);
+            for (const item of result) {
+                let event = eventsCanGenerateModifiers.find(
+                    (ev) => ev.doc === item.name
+                );
+                if (event) await item.generateModifiers(event.choices);
+                item.onObtained(item.actor);
+            }
+            embeddedItem = embeddedItem.concat(result);
         }
 
         return embeddedItem;
@@ -346,7 +343,7 @@ export class CSHouseActorSheet extends CSActorSheet {
             return { canGenerate: false };
 
         let choices = [];
-        for (let i = 1; i <= formData.event.data.numberOfChoices; i++) {
+        for (let i = 1; i <= formData.event.system.numberOfChoices; i++) {
             choices.push(formData.data[`resource_${i}`].value);
         }
         return { canGenerate: true, choices: choices };

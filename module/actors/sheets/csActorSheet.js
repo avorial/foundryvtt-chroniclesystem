@@ -75,7 +75,7 @@ export class CSActorSheet extends ActorSheet {
                 return i.name === doc.name;
             });
             if (item && item.type !== "weapon") {
-                embeddedItem.push(this.actor.getEmbeddedDocument("Item", item.data._id));
+                embeddedItem.push(this.actor.getEmbeddedDocument("Item", item.id));
             } else {
                 if (this.isItemPermitted(doc.type))
                     itemsToCreate.push(doc);
@@ -83,13 +83,11 @@ export class CSActorSheet extends ActorSheet {
         });
 
         if (itemsToCreate.length > 0) {
-            this.actor.createEmbeddedDocuments("Item", itemsToCreate)
-                .then(function(result) {
-                    result.forEach((item) => {
-                        item.onObtained(item.actor);
-                    });
-                    embeddedItem.concat(result);
-                });
+            const result = await this.actor.createEmbeddedDocuments("Item", itemsToCreate);
+            result.forEach((item) => {
+                item.onObtained(item.actor);
+            });
+            embeddedItem = embeddedItem.concat(result);
         }
 
         return embeddedItem;
