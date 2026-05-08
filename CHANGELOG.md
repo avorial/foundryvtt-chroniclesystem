@@ -1,5 +1,10 @@
 #Change Log
 
+## 0.7.5
+
+### Fixed
+- Removed the unsupported top-level `type` key from the system manifest.
+
 ## 0.7.4
 
 ### Changed
