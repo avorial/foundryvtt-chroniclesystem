@@ -1,5 +1,10 @@
 #Change Log
 
+## 0.7.4
+
+### Changed
+- Switched the package download URL to GitHub's raw branch route to avoid stale raw.githubusercontent.com cache responses.
+
 ## 0.7.3
 
 ### Changed

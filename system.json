@@ -1,7 +1,7 @@
 {
   "title": "Chronicle System (Unofficial)",
   "description": "An implementation for Green Ronin's Chronicle System, used by SIFRP and Sword Chronicles.",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "type": "system",
   "esmodules": [
     "module/system/config.js"
@@ -92,7 +92,7 @@
   "secondaryTokenAttribute": null,
   "url": "https://github.com/avorial/foundryvtt-chroniclesystem/",
   "manifest": "https://raw.githubusercontent.com/avorial/foundryvtt-chroniclesystem/master/system.json",
-  "download": "https://raw.githubusercontent.com/avorial/foundryvtt-chroniclesystem/master/chroniclesystem.zip?v=0.7.3",
+  "download": "https://github.com/avorial/foundryvtt-chroniclesystem/raw/refs/heads/master/chroniclesystem.zip?v=0.7.4",
   "license": "ISC",
   "id": "chroniclesystem",
   "authors": [
