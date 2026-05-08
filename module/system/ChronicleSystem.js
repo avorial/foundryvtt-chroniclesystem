@@ -83,7 +83,7 @@ function handleRoll(rollType, actor) {
     const formula = _getFormula(roll_definition, actor);
 
     let csRoll = new CSRoll(roll_definition[1], formula);
-    return csRoll.doRoll(actor, false);
+    return csRoll.doRoll(actor);
 }
 
 async function _showModifierDialog(formula) {
@@ -138,7 +138,7 @@ async function handleRollAsync(rollType, actor, showModifierDialog = false) {
     }
 
     let csRoll = new CSRoll(roll_definition[1], formula);
-    return await csRoll.doRoll(actor, true);
+    return await csRoll.doRoll(actor);
 }
 
 

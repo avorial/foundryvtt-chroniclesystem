@@ -9,31 +9,24 @@ export class CSRoll {
         this.results = [];
     }
 
-    async doRoll(actor, async = true) {
+    async doRoll(actor) {
         if (this.formula.pool - this.formula.dicePenalty <=0 ) {
             ui.notifications.info(SystemUtils.localize("CS.notifications.dicePoolInvalid"));
             return null;
         }
         const pool = Math.max(this.formula.pool, 1);
         const dices = pool + this.formula.bonusDice;
-        let dieRoll = new Die({faces: 6, number: dices});
-        await dieRoll.evaluate({async : async});
-        this.results = dieRoll.results;
-
-        let reRollFormula = "r"+this.formula.reRoll+"=1";
-        dieRoll.reroll(reRollFormula);
-
-        dieRoll.keep('kh' + Math.max(this.formula.pool - this.formula.dicePenalty, 0));
-
-        const plus = new OperatorTerm({operator: "+"});
-        plus.evaluate();
-        const bonus = new NumericTerm({number: this.formula.modifier});
-        bonus.evaluate();
-
-        let resultRoll = Roll.fromTerms([dieRoll, plus, bonus]);
+        const keep = Math.max(this.formula.pool - this.formula.dicePenalty, 0);
+        const reroll = this.formula.reRoll > 0 ? `r${this.formula.reRoll}=1` : "";
+        const modifier = this.formula.modifier || 0;
+        const modifierFormula = modifier === 0 ? "" : ` ${modifier > 0 ? "+" : "-"} ${Math.abs(modifier)}`;
+        const rollFormula = `${dices}d6${reroll}kh${keep}${modifierFormula}`;
+        const resultRoll = Roll.create(rollFormula);
+        await resultRoll.evaluate();
+        this.results = resultRoll.dice[0]?.results ?? [];
         const messageId = this.formula.isUserChanged ? "CS.chatMessages.customRoll" : "CS.chatMessages.simpleRoll";
         let flavor =  SystemUtils.format(messageId, {name: actor.name, test: this.title});
-        resultRoll.toMessage({
+        await resultRoll.toMessage({
             speaker: ChatMessage.getSpeaker({ actor: actor }),
             flavor: flavor
         });
